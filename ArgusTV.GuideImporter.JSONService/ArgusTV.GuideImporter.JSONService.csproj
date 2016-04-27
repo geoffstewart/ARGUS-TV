@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{37EBDB54-1228-403D-8811-71E82995D7F9}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ArgusTV.GuideImporter.JSONService</RootNamespace>
+    <AssemblyName>ArgusTV.GuideImporter.JSONService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <TargetFrameworkProfile />
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ArgusTV.DataContracts">
+      <HintPath>..\..\a\ARGUS-TV\ReferencedAssemblies\ArgusTV.DataContracts.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChannelFactory.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="ConfigInstance.cs" />
+    <Compile Include="CountryListStore.cs" />
+    <Compile Include="Entities\AlterLineupsResponse.cs" />
+    <Compile Include="Entities\ErrorResponse.cs" />
+    <Compile Include="Entities\HeadendResponseInstance.cs" />
+    <Compile Include="Entities\AssignedLineupsResponse.cs" />
+    <Compile Include="Entities\LineupInfoResponse.cs" />
+    <Compile Include="Entities\ProgramResponseInstance.cs" />
+    <Compile Include="Entities\SchedulesRequestInstance.cs" />
+    <Compile Include="Entities\SchedulesResponse.cs" />
+    <Compile Include="Entities\StatusResponse.cs" />
+    <Compile Include="Entities\TokenRequest.cs" />
+    <Compile Include="Entities\TokenResponse.cs" />
+    <Compile Include="EventLogger.cs" />
+    <Compile Include="LineupFactory.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProgramMD5Store.cs" />
+    <Compile Include="SchedulesDirectJsonPlugin.cs" />
+    <Compile Include="test\WebClientTest.cs" />
+    <Compile Include="GuideChannelStore.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="WebClient.cs" />
+    <Compile Include="WebClientException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ArgusTV.GuideImporter.JSONService.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Countries.config" />
+    <None Include="packages.config" />
+    <None Include="PostBuild.cmd" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ArgusTV.Common\ArgusTV.Common.csproj">
+      <Project>{D0FD6FEC-F7B8-406A-9B87-16FF3F5472BE}</Project>
+      <Name>ArgusTV.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArgusTV.GuideImporter.Interfaces\ArgusTV.GuideImporter.Interfaces.csproj">
+      <Project>{69BDFF96-14EE-4B21-AD5A-A9FD29A4A3AA}</Project>
+      <Name>ArgusTV.GuideImporter.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(ProjectDir)PostBuild.cmd $(TargetDir) $(TargetPath) $(ConfigurationName)  $(TargetName) $(ProjectDir) $(ProjectPath) $(PlatformName)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
